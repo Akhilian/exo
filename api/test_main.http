@@ -1,0 +1,15 @@
+# Test your FastAPI endpoints
+
+### Publish passengers
+POST http://127.0.0.1:8000/file
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="train.csv"
+Content-Type: text/csv
+
+< ./train.csv
+--WebAppBoundary--
+
+### Get passengers
+GET http://127.0.0.1:8000/passengers
