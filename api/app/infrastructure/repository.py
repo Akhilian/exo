@@ -1,4 +1,4 @@
-from sqlalchemy.orm import load_only
+from sqlalchemy.sql.functions import count
 from sqlmodel import Session, select
 
 from app.infrastructure.database import engine
@@ -26,6 +26,11 @@ class PassengerRepository():
                     PassengerORM.fare,
                 )
             ).all()
+
+    def get_survival_distribution(self):
+        with Session(engine) as session:
+            # stmt = session.query(Sales.product, func.sum(Sales.quantity).label('total_quantity')).group_by(Sales.product)
+            return session.query(PassengerORM.survived, count(PassengerORM.survived)).group_by(PassengerORM.survived)
 
 
 passenger_repository = PassengerRepository()

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from adapter import import_csv
@@ -34,15 +34,24 @@ async def ingest_csv(file: UploadFile):
     return passengers
 
 
-@app.get("/passengers", status_code=204)
-async def return_passengers():
-    return passenger_repository.get()
+@app.get("/passengers")
+async def list_passengers(response: Response):
+
+    passengers = passenger_repository.get()
+
+    if len(passengers) == 0:
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return []
+
+    return passengers
 
 
 @app.get("/passengers/distribution")
 async def get_distribution(axis: str):
     if axis == 'fare':
         return passenger_repository.get_price_distribution()
+    if axis == 'gender':
+        return passenger_repository.get_survival_distribution()
     return {}
 
 

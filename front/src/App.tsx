@@ -1,20 +1,19 @@
 import React from 'react';
 import './App.css';
 import PassengerTable from "./components/PassengerTable";
-import PriceScatter from "./components/PriceScatter";
-import Card from "./components/Card";
-import Section from "./components/Section";
+import SurvivalDistribution from "./components/SurvivalDistribution";
+import {Grid} from '@mui/material';
 
 function App() {
   return (
-    <Section>
-      <Card>
+    <Grid container className="section">
+      <Grid item xs={12}>
         <PassengerTable/>
-      </Card>
-      <Card>
-        <PriceScatter/>
-      </Card>
-    </Section>
+      </Grid>
+      <Grid item xs={4} className={"card"}>
+        <SurvivalDistribution/>
+      </Grid>
+    </Grid>
   );
 }
 

@@ -10,7 +10,7 @@ const PriceScatter = () => {
   }]
 
   useEffect(() => {
-    fetch('http://localhost:8000/passengers/distribution?axis=fare')
+    fetch(`${process.env.REACT_APP_API_URL}/passengers/distribution?axis=`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -19,8 +19,6 @@ const PriceScatter = () => {
 
   return (
     <ScatterChart
-      width={600}
-      height={300}
       series={[
         {
           label: 'Price',
