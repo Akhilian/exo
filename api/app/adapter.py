@@ -1,6 +1,6 @@
 import re
 
-from app.models import Passenger
+from app.infrastructure.models import Passenger
 
 
 def import_csv(csv) -> list[Passenger]:

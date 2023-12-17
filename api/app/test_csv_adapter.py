@@ -1,7 +1,7 @@
 import unittest
 
-from adapter import import_csv
-from app.models import Passenger
+from app.adapter import import_csv
+from app.infrastructure.models import Passenger
 
 
 class ImportCSV(unittest.TestCase):

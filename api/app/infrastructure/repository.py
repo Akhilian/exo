@@ -2,7 +2,7 @@ from sqlalchemy.sql.functions import count
 from sqlmodel import Session, select
 
 from app.infrastructure.database import engine
-from app.models import Passenger, PassengerORM
+from app.infrastructure.models import Passenger, PassengerORM
 
 
 class PassengerRepository():

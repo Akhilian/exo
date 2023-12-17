@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 
-from adapter import import_csv
+from app.adapter import import_csv
 from app.infrastructure.database import create_db_and_tables
 from app.infrastructure.repository import passenger_repository
 
