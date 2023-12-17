@@ -21,6 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/file")
 async def ingest_csv(file: UploadFile):
     contents = await file.read()
@@ -33,9 +34,16 @@ async def ingest_csv(file: UploadFile):
     return passengers
 
 
-@app.get("/passengers")
-async def ingest_csv():
+@app.get("/passengers", status_code=204)
+async def return_passengers():
     return passenger_repository.get()
+
+
+@app.get("/passengers/distribution")
+async def get_distribution(axis: str):
+    if axis == 'fare':
+        return passenger_repository.get_price_distribution()
+    return {}
 
 
 @app.on_event("startup")

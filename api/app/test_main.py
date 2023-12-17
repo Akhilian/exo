@@ -5,7 +5,6 @@ from .main import app
 client = TestClient(app)
 
 
-def test_read_main():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"msg": "Hello World"}
+def test_should_return_204_when_no_passenger():
+    response = client.get("/passengers")
+    assert response.status_code == 204
