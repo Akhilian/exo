@@ -29,7 +29,6 @@ class PassengerRepository():
 
     def get_survival_distribution(self):
         with Session(engine) as session:
-            # stmt = session.query(Sales.product, func.sum(Sales.quantity).label('total_quantity')).group_by(Sales.product)
             return session.query(PassengerORM.survived, count(PassengerORM.survived)).group_by(PassengerORM.survived)
 
 
